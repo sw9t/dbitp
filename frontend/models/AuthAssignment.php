@@ -24,7 +24,7 @@ class AuthAssignment extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'item_name' => 'Item Name',
+            'item_name' => 'Роль пользователя:',
             'user_id' => 'User ID',
             'created_at' => 'Created At',
         ];
