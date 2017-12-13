@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use common\models\User;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -28,7 +29,7 @@ class TicketsSearch extends Tickets
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+            'query' => $query->joinWith(User::tableName())->joinWith(StatusTicket::tableName()),
         ]);
 
         $this->load($params);

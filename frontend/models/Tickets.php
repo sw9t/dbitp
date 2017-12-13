@@ -17,11 +17,15 @@ class Tickets extends ActiveRecord
         return [
             [['text'], 'string'],
             [['status_id', 'declarer_id', 'executor_id', 'is_deleted'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
             [['subject'], 'string', 'max' => 255],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => StatusTicket::className(), 'targetAttribute' => ['status_id' => 'id']],
-            [['declarer_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['declarer_id' => 'id']],
-            [['executor_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['executor_id' => 'id']],
+            [['subject', 'text'], 'required'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['status_id'], 'exist', 'skipOnError' => true,
+                'targetClass' => StatusTicket::className(), 'targetAttribute' => ['status_id' => 'id']],
+            [['declarer_id'], 'exist', 'skipOnError' => true,
+                'targetClass' => User::className(), 'targetAttribute' => ['declarer_id' => 'id']],
+            [['executor_id'], 'exist', 'skipOnError' => true,
+                'targetClass' => User::className(), 'targetAttribute' => ['executor_id' => 'id']],
         ];
     }
 
@@ -29,14 +33,14 @@ class Tickets extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'subject' => 'Subject',
-            'text' => 'Text',
-            'status_id' => 'Status ID',
-            'declarer_id' => 'Declarer ID',
-            'executor_id' => 'Executor ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'is_deleted' => 'Is Deleted',
+            'subject' => 'Тема',
+            'text' => 'Содержание',
+            'status_id' => 'Статус',
+            'declarer_id' => 'Заявитель',
+            'executor_id' => 'Исполнитель',
+            'created_at' => 'Дата создания',
+            'updated_at' => 'Дата изменения',
+            'is_deleted' => 'Удален',
         ];
     }
 

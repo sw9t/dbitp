@@ -1,5 +1,6 @@
 <?php
 
+use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
@@ -24,11 +25,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'subject',
             'text:ntext',
-            'status_id',
-            'declarer_id',
-            'executor_id',
-            'created_at',
-            'updated_at',
+//            ['label' => 'Статус',
+//                'attribute' => 'status_id',
+//                'content' => function ($model) {
+//                    $a = StatusTicket::find()->where(['id' => $model->status_id])->one();
+//                    if (empty($a->color)) {
+//                        return '<span class="label label-info" style="background-color: black">' . $a->name . '</span>';
+//                    } else {
+//                        return '<span class="label label-info" style="background-color: ' . $color . '">' . $a->name . '</span>';
+//                    }
+//                },
+//            ],
+            ['attribute'=>'declarer_id'],
+            ['attribute'=>'executor_id'],
+//            'created_at',
+//            'updated_at',
             // 'is_deleted',
             ['class' => 'yii\grid\ActionColumn'],
         ],

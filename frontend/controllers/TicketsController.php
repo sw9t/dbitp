@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use frontend\models\Tickets;
 use Yii;
 use frontend\models\TicketsSearch;
 use yii\web\Controller;
@@ -38,10 +39,12 @@ class TicketsController extends Controller
     {
         $model = new Tickets();
 
+        $model->status_id = 1;
+        $model->declarer_id = Yii::$app->user->getId();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
-            return $this->render('create', [
+            return $this->render('edit', [
                 'model' => $model,
             ]);
         }
@@ -50,11 +53,10 @@ class TicketsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
-            return $this->render('update', [
+            return $this->render('edit', [
                 'model' => $model,
             ]);
         }
@@ -62,8 +64,9 @@ class TicketsController extends Controller
 
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $model = $this->findModel($id);
+        $model->is_deleted = 1;
+        $model->save();
         return $this->redirect(['index']);
     }
 
