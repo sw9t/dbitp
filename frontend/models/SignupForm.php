@@ -1,4 +1,5 @@
 <?php
+
 namespace frontend\models;
 
 use yii\base\Model;
@@ -30,24 +31,36 @@ class SignupForm extends Model
         ];
     }
 
-    public function signup()
+    public function signup($fromAdmin = false)
     {
         if (!$this->validate()) {
             return null;
         }
-        
+
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
-        if($user->save()){
-            $authAssigment=new AuthAssignment();
-            $authAssigment->item_name='declarer';
-            $authAssigment->user_id=(string)$user->id;
-            $authAssigment->created_at=time();
-            $authAssigment->save();
+        if ($user->save()) {
+            if (!$fromAdmin) {
+                $authAssigment = new AuthAssignment();
+                $authAssigment->item_name = 'declarer';
+                $authAssigment->user_id = (string)$user->id;
+                $authAssigment->created_at = time();
+                $authAssigment->save();
+            }
         }
         return $user->save() ? $user : null;
     }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Имя пользователя',
+            'password' => 'Пароль',
+        ];
+    }
+
 }
