@@ -1,48 +1,82 @@
 <?php
-
 /* @var $this \yii\web\View */
-
 /* @var $content string */
-
-use frontend\assets\AppAsset;
-use yii\apidoc\templates\bootstrap\SideNavWidget;
 use yii\helpers\Html;
-
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\Breadcrumbs;
+use frontend\assets\AppAsset;
+use common\widgets\Alert;
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
-    <html>
+    <html lang="<?= Yii::$app->language ?>">
     <head>
         <meta charset="<?= Yii::$app->charset ?>">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Admin Dashboard Template"/>
-        <meta name="keywords" content="admin,dashboard"/>
-        <meta name="author" content="Steelcoders"/>
-        <!-- Styles -->
-        <!-- Theme Styles -->
         <?= Html::csrfMetaTags() ?>
-        <?php $this->head() ?>
         <title><?= Html::encode($this->title) ?></title>
+        <?php $this->head() ?>
     </head>
-    <body class="page-header-fixed page-horizontal-bar compact-menu page-sidebar-fixed">
+    <body>
     <?php $this->beginBody() ?>
-    <div class="overlay"></div>
-    <main class="page-content content-wrap container">
-        <?= $this->render(@'navbar') ?>
-        <?= $this->render(@'sidebar') ?>
-        <div class="page-inner">
-            <?= $content ?>
-            <?= $this->render(@'footer') ?>
-        </div><!-- Page Inner -->
-    </main><!-- Page Content -->
-    <div class="cd-overlay"></div>
-    <?php $this->endBody() ?>
 
-    <script src="/plugins/offcanvasmenueffects/js/classie.js"></script>
-    <script src="/plugins/offcanvasmenueffects/js/main.js"></script>
-    <script src="/plugins/waves/waves.min.js"></script>
-    <script src="/plugins/3d-bold-navigation/js/main.js"></script>
+    <div class="wrap">
+        <?php
+        NavBar::begin([
+            'brandLabel' => 'Домой',
+            'brandUrl' => Yii::$app->homeUrl,
+            'options' => [
+                'class' => 'navbar-inverse navbar-fixed-top',
+            ],
+        ]);
+        if (Yii::$app->user->can('admin')) {
+            $menuItems = [
+                ['label' => 'Все заявки', 'url' => ['/tickets']],
+                ['label' => 'Статусы заявок', 'url' => ['/status-tickets']],
+                ['label' => 'Пользователи', 'url' => ['/user']],
+            ];
+        }
+        if (Yii::$app->user->isGuest) {
+            $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+            $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        } else {
+            $menuItems[] = '<li>'
+                . Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>';
+        }
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav navbar-right'],
+            'items' => $menuItems,
+        ]);
+        NavBar::end();
+        ?>
+
+        <div class="container">
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ]) ?>
+            <?= Alert::widget() ?>
+            <?= $content ?>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
+
+            <p class="pull-right"><?= Yii::powered() ?></p>
+        </div>
+    </footer>
+
+    <?php $this->endBody() ?>
     </body>
     </html>
 <?php $this->endPage() ?>
