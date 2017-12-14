@@ -42,6 +42,19 @@ return [
             'rules' => [
             ],
         ],
+        'assetManager' => [
+            'appendTimestamp' => true,
+            'linkAssets' => true,
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'sourcePath' => null,
+                    'basePath' => '@webroot',
+                    'baseUrl' => '@web',
+                    'jsOptions' => [ 'position' => \yii\web\View::POS_HEAD ],
+                    'js' => ['plugins/jquery/jquery-2.2.4.min.js']
+                ],
+            ],
+        ],
     ],
     'params' => $params,
 ];
