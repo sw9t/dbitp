@@ -6,15 +6,11 @@ use Yii;
 use yii\console\Controller;
 use yii\rbac\DbManager;
 
-/**
- * Инициализатор RBAC выполняется в консоли php yii rbac/init
- */
+
 class RbacController extends Controller
 {
-
     public function actionInit()
     {
-
         Yii::$app->cache->flush();
         $auth = Yii::$app->authManager;
         $auth->removeAll();

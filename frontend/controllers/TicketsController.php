@@ -40,13 +40,12 @@ class TicketsController extends Controller
     public function actionCreate()
     {
         $model = new Tickets();
-
         $model->status_id = 1;
         $model->declarer_id = Yii::$app->user->getId();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
-            return $this->render('edit', [
+            return $this->renderAjax('edit', [
                 'model' => $model,
             ]);
         }

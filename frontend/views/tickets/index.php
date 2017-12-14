@@ -11,16 +11,16 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="tickets-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <?php Modal::begin([
+        'id' => 'pModal',
+        'header' => '<h2>Подать заявку</h2>',
+    ]); ?>
+    <div id='modalContent'></div>
+    <?php Modal::end(); ?>
     <?php if (Yii::$app->user->can('declarer')): ?>
-        <?php Modal::begin([
-            'header' => '<h2>Подать заявку</h2>',
-            'toggleButton' => ['label' => 'Создать заявку', 'class' => 'btn btn-success'],
-        ]);
-        echo $this->render('_form', [
-            'model' => $model,
-        ]);
-        Modal::end(); ?>
+        <?= Html::a('<i class = \'fa fa-plus\'></i>' . '  Создать заявку',
+            ['create'],
+            ['class' => 'btn btn-success btn-addon modalka', 'style' => 'margin-bottom: 7px;']) ?>
     <?php endif; ?>
     <?php Pjax::begin(); ?>
     <?= GridView::widget([
@@ -54,3 +54,11 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
     <?php Pjax::end(); ?>
 </div>
+<script>
+    $('.modalka').click(function (e) {
+        e.preventDefault();
+        $('#pModal').modal('show')
+            .find('.modal-body')
+            .load($(this).attr('href'));
+    });
+</script>
