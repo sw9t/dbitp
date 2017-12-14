@@ -5,8 +5,6 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\runtime\StatusTicketsSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Статусы заявок';
 $this->params['breadcrumbs'][] = $this->title;
@@ -28,12 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Цвет',
                 'attribute' => 'color',
                 'content' => function ($model) {
-                    if (empty($model->color)) {
-                        return '<span class="label label-info" style="background-color: black;font-size: initial;">' . $model->color . '</span>';
-                    } else {
-                        return '<span class="label label-info" style="background-color: ' . $model->color . ';font-size: initial;">' . $model->color . '</span>';
-                    }
-
+                    return empty($model->color) ? '<span class="label label-info" style="background-color: black;">' . $model->color . '</span>'
+                        : '<span class="label label-info" style="background-color: ' . $model->color . ';">' . $model->color . '</span>';
                 },
             ],
             ['class' => 'yii\grid\ActionColumn'],

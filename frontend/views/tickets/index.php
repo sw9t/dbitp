@@ -13,14 +13,22 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->user->can('declarer')): ?>
-        <p>
-            <?= Html::a('Создать заявку', ['create'], ['class' => 'btn btn-success']) ?>
-        </p>
+        <?php Modal::begin([
+            'header' => '<h2>Подать заявку</h2>',
+            'toggleButton' => ['label' => 'Создать заявку', 'class' => 'btn btn-success'],
+        ]);
+        echo $this->render('_form', [
+            'model' => $model,
+        ]);
+        Modal::end(); ?>
     <?php endif; ?>
     <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'tableOptions' => [
+            'class' => 'table table-bordered table-hover dataTable'
+        ],
         'columns' => [
             'id',
             'subject',
@@ -36,8 +44,8 @@ $this->params['breadcrumbs'][] = $this->title;
 //                    }
 //                },
 //            ],
-            ['attribute'=>'declarer_id'],
-            ['attribute'=>'executor_id'],
+            ['attribute' => 'declarer_id'],
+            ['attribute' => 'executor_id'],
 //            'created_at',
 //            'updated_at',
             // 'is_deleted',

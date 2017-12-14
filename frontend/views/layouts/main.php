@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Домой',
+        'brandLabel' => 'Helpdesk App',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -37,6 +37,7 @@ AppAsset::register($this);
     ]);
     if (Yii::$app->user->can('admin')) {
         $menuItems = [
+            ['label' => 'Все заявки', 'url' => ['/tickets']],
             ['label' => 'Статусы заявок', 'url' => ['/status-tickets']],
             ['label' => 'Пользователи', 'url' => ['/user']],
         ];

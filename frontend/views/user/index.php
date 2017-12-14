@@ -12,11 +12,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="user-index">
 
     <div class="row">
-        <div class="col-lg-6" style="font-weight: bold;    font-size: xx-large;">
-            <?= Html::encode($this->title) ?>
+        <div class="col-lg-6">
+            <h1><?= Html::encode($this->title) ?></h1>
         </div>
-        <div class="col-lg-6" style="direction: rtl;">
-            <?= Html::a('Создать пользователя', ['create'], ['class' => 'btn btn-success']) ?>
+        <div class="col-lg-6">
+            <br>
+            <br>
+            <?= Html::a('Создать пользователя', ['create'], ['class' => 'btn btn-success pull-right']) ?>
         </div>
     </div>
     <?php

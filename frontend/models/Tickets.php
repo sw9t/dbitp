@@ -44,7 +44,7 @@ class Tickets extends ActiveRecord
         ];
     }
 
-    public function getStatus()
+    public function getStatusTicket()
     {
         return $this->hasOne(StatusTicket::className(), ['id' => 'status_id']);
     }

@@ -29,7 +29,7 @@ class TicketsSearch extends Tickets
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query->joinWith(User::tableName())->joinWith(StatusTicket::tableName()),
+            'query' => $query
         ]);
 
         $this->load($params);
