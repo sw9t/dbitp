@@ -27,9 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]) ?>
         </div>
     </div>
-    <?php Modal::begin(['id' => 'pModal', 'header' => '<h2 class="text-center"></h2>']); ?>
-    <div id='modalContent'></div>
-    <?php Modal::end(); ?>
     <?php $columns = []; ?>
 
     <?php Pjax::begin(); ?>

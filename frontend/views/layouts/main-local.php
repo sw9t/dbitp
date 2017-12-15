@@ -5,8 +5,14 @@
 /* @var $content string */
 
 use frontend\assets\AppAsset;
+use yii\bootstrap\Modal;
 use yii\helpers\Html;
 
+$user = !empty(Yii::$app->user->identity) ? Yii::$app->user->identity : new \common\models\User();
+if ($user->isNewRecord) {
+    $user->username = 'Guest';
+    $user->email = '(no email)';
+}
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -65,9 +71,15 @@ AppAsset::register($this);
     </div><!-- Input Group -->
 </form><!-- Search Form -->
 <main class="page-content content-wrap container">
-    <?= $this->render(@'navbar') ?>
+    <?php Modal::begin([
+        'id' => 'pModal',
+        'header' => '<h2 class="text-center"></h2>',
+    ]); ?>
+    <div id='modalContent'></div>
+    <?php Modal::end(); ?>
+    <?= $this->render(@'navbar', ['user' => $user]) ?>
     <?= $this->render(@'chat') ?>
-    <?= $this->render(@'sidebar') ?>
+    <?= $this->render(@'sidebar', ['user' => $user]) ?>
     <div class="page-inner">
         <div id="main-wrapper">
             <?= $content ?>

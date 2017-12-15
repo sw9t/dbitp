@@ -12,17 +12,15 @@ use yii\helpers\Url;
                         <img src="/images/profile-menu-image.png" class="img-circle img-responsive" alt="">
                     </div>
                     <div class="sidebar-profile-details">
-                        <span><?=
-
-                            Yii::$app->user->identity->username ?><br>
-                            <small><?= Yii::$app->user->identity->email ?></small></span>
+                        <span><?= $user->username ?><br>
+                            <small><?= $user->email ?></small></span>
                     </div>
                 </a>
             </div>
         </div>
         <ul class="menu accordion-menu">
             <li class="droplink active"><a href="<?= Url::to(['/tickets/index']) ?>"
-                                                class="waves-effect waves-button">
+                                           class="waves-effect waves-button">
                     <span class="menu-icon glyphicon glyphicon-list-alt"></span>
                     <p>Заявки</p><span class="arrow"></span></a>
                 <ul class="sub-menu">
@@ -36,7 +34,9 @@ use yii\helpers\Url;
                     <p>Пользователи</p><span class="arrow"></span></a>
                 <ul class="sub-menu">
                     <li><a href="<?= Url::to(['/user']) ?>">Управление пользователями</a></li>
-                    <li><a href="<?= Url::to(['/user/create']) ?>">Создать новый аккаунт</a></li>
+                    <li><a href="<?= Url::to(['/user/create']) ?>" class="btn-modal" data-action="create">
+                            Создать новый аккаунт</a>
+                    </li>
                 </ul>
             </li>
 

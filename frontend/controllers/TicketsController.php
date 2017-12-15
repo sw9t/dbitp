@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use frontend\models\Tickets;
 use Yii;
 use frontend\models\TicketsSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -15,10 +16,30 @@ class TicketsController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'actions' => ['index', 'view', 'create', 'edit', 'update'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['operator'],
+                        'actions' => ['index', 'view', 'create', 'edit', 'update'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'multi-delete' => ['POST'],
                 ],
             ],
         ];

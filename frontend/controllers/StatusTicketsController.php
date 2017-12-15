@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use frontend\models\StatusTicket;
 use frontend\models\StatusTicketsSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -14,10 +15,30 @@ class StatusTicketsController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'actions' => ['index', 'view', 'create', 'edit', 'update'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['operator'],
+                        'actions' => ['index', 'view', 'create', 'edit', 'update'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'multi-delete' => ['POST'],
                 ],
             ],
         ];

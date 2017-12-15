@@ -1,6 +1,7 @@
 <?php
 
 use yii\bootstrap\BaseHtml;
+use yii\helpers\Html;
 use yii\helpers\Url;
 
 ?>
@@ -237,7 +238,7 @@ use yii\helpers\Url;
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic"
                            data-toggle="dropdown">
-                            <span class="user-name"><?= Yii::$app->user->identity->username ?>
+                            <span class="user-name"><?= $user->username ?>
                                 <i class="fa fa-angle-down"></i></span>
                             <img class="img-circle avatar" src="/images/avatar1.png" width="40" height="40" alt="">
                         </a>
@@ -255,9 +256,10 @@ use yii\helpers\Url;
                         </ul>
                     </li>
                     <li>
-                        <a href="<?= Url::to(['/site/logout']) ?>"
+                        <a href="<?= Url::to(['/site/logout']) ?>" data-method="post"
                            class="log-out waves-effect waves-button waves-classic">
-                            <span> <?= BaseHtml::icon('log-out') ?> Выход</span>
+                            <span> <?= BaseHtml::icon('log-out') ?>
+                                <?= $user->isNewRecord? ' Войти' : ' Выход'?> </span>
                         </a>
                     </li>
                     <li>

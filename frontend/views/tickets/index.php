@@ -11,16 +11,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="tickets-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php Modal::begin([
-        'id' => 'pModal',
-        'header' => '<h2>Подать заявку</h2>',
-    ]); ?>
-    <div id='modalContent'></div>
-    <?php Modal::end(); ?>
     <?php if (Yii::$app->user->can('declarer')): ?>
         <?= Html::a('<i class = \'fa fa-plus\'></i>' . '  Создать заявку',
             ['create'],
-            ['class' => 'btn btn-success btn-addon modalka', 'style' => 'margin-bottom: 7px;']) ?>
+            ['class' => 'btn btn-success btn-addon btn-modal', 'style' => 'margin-bottom: 7px;']) ?>
     <?php endif; ?>
     <?php Pjax::begin(); ?>
     <?= GridView::widget([
