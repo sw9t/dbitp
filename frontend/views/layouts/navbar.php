@@ -1,4 +1,8 @@
 <?php
+
+use yii\bootstrap\BaseHtml;
+use yii\helpers\Url;
+
 ?>
 <div class="navbar">
     <div class="navbar-inner">
@@ -11,22 +15,27 @@
             <a href="/" class="logo-text"><span>Helpdesk</span></a>
         </div><!-- Logo Box -->
         <div class="search-button">
-            <a href="javascript:void(0);" class="waves-effect waves-button waves-classic show-search"><i class="fa fa-search"></i></a>
+            <a href="javascript:void(0);" class="waves-effect waves-button waves-classic show-search"><i
+                        class="fa fa-search"></i></a>
         </div>
         <div class="topmenu-outer">
             <div class="top-menu">
                 <ul class="nav navbar-nav navbar-left">
                     <li>
-                        <a href="javascript:void(0);" class="waves-effect waves-button waves-classic sidebar-toggle"><i class="fa fa-bars"></i></a>
+                        <a href="javascript:void(0);" class="waves-effect waves-button waves-classic sidebar-toggle"><i
+                                    class="fa fa-bars"></i></a>
                     </li>
                     <li>
-                        <a href="#cd-nav" class="waves-effect waves-button waves-classic cd-nav-trigger"><i class="fa fa-diamond"></i></a>
+                        <a href="#cd-nav" class="waves-effect waves-button waves-classic cd-nav-trigger"><i
+                                    class="fa fa-diamond"></i></a>
                     </li>
                     <li>
-                        <a href="javascript:void(0);" class="waves-effect waves-button waves-classic toggle-fullscreen"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:void(0);" class="waves-effect waves-button waves-classic toggle-fullscreen"><i
+                                    class="fa fa-expand"></i></a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
+                        <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic"
+                           data-toggle="dropdown">
                             <i class="fa fa-cogs"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-md dropdown-list theme-settings" role="menu">
@@ -35,7 +44,8 @@
                                     <li class="no-link" role="presentation">
                                         Fixed Header
                                         <div class="ios-switch pull-right switch-md">
-                                            <input type="checkbox" class="js-switch pull-right fixed-header-check" checked>
+                                            <input type="checkbox" class="js-switch pull-right fixed-header-check"
+                                                   checked>
                                         </div>
                                     </li>
                                 </ul>
@@ -79,7 +89,8 @@
                                     <li class="no-link" role="presentation">
                                         Boxed Layout
                                         <div class="ios-switch pull-right switch-md">
-                                            <input type="checkbox" class="js-switch pull-right boxed-layout-check" checked>
+                                            <input type="checkbox" class="js-switch pull-right boxed-layout-check"
+                                                   checked>
                                         </div>
                                     </li>
                                 </ul>
@@ -89,33 +100,46 @@
                                     <li class="no-link" role="presentation">
                                         Choose Theme Color
                                         <div class="color-switcher">
-                                            <a class="colorbox color-blue" href="?theme=blue" title="Blue Theme" data-css="blue"></a>
-                                            <a class="colorbox color-green" href="?theme=green" title="Green Theme" data-css="green"></a>
-                                            <a class="colorbox color-red" href="?theme=red" title="Red Theme" data-css="red"></a>
-                                            <a class="colorbox color-white" href="?theme=white" title="White Theme" data-css="white"></a>
-                                            <a class="colorbox color-purple" href="?theme=purple" title="purple Theme" data-css="purple"></a>
-                                            <a class="colorbox color-dark" href="?theme=dark" title="Dark Theme" data-css="dark"></a>
+                                            <a class="colorbox color-blue" href="?theme=blue" title="Blue Theme"
+                                               data-css="blue"></a>
+                                            <a class="colorbox color-green" href="?theme=green" title="Green Theme"
+                                               data-css="green"></a>
+                                            <a class="colorbox color-red" href="?theme=red" title="Red Theme"
+                                               data-css="red"></a>
+                                            <a class="colorbox color-white" href="?theme=white" title="White Theme"
+                                               data-css="white"></a>
+                                            <a class="colorbox color-purple" href="?theme=purple" title="purple Theme"
+                                               data-css="purple"></a>
+                                            <a class="colorbox color-dark" href="?theme=dark" title="Dark Theme"
+                                               data-css="dark"></a>
                                         </div>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="no-link"><button class="btn btn-default reset-options">Reset Options</button></li>
+                            <li class="no-link">
+                                <button class="btn btn-default reset-options">Reset Options</button>
+                            </li>
                         </ul>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="javascript:void(0);" class="waves-effect waves-button waves-classic show-search"><i class="fa fa-search"></i></a>
+                        <a href="javascript:void(0);" class="waves-effect waves-button waves-classic show-search"><i
+                                    class="fa fa-search"></i></a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="badge badge-success pull-right">4</span></a>
+                        <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic"
+                           data-toggle="dropdown"><i class="fa fa-envelope"></i><span
+                                    class="badge badge-success pull-right">4</span></a>
                         <ul class="dropdown-menu title-caret dropdown-lg" role="menu">
-                            <li><p class="drop-title">You have 4 new  messages !</p></li>
+                            <li><p class="drop-title">You have 4 new messages !</p></li>
                             <li class="dropdown-menu-list slimscroll messages">
                                 <ul class="list-unstyled">
                                     <li>
                                         <a href="#">
-                                            <div class="msg-img"><div class="online on"></div><img class="img-circle" src="/images/avatar2.png" alt=""></div>
+                                            <div class="msg-img">
+                                                <div class="online on"></div>
+                                                <img class="img-circle" src="/images/avatar2.png" alt=""></div>
                                             <p class="msg-name">Sandra Smith</p>
                                             <p class="msg-text">Hey ! I'm working on your project</p>
                                             <p class="msg-time">3 minutes ago</p>
@@ -123,7 +147,9 @@
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <div class="msg-img"><div class="online off"></div><img class="img-circle" src="/images/avatar4.png" alt=""></div>
+                                            <div class="msg-img">
+                                                <div class="online off"></div>
+                                                <img class="img-circle" src="/images/avatar4.png" alt=""></div>
                                             <p class="msg-name">Amily Lee</p>
                                             <p class="msg-text">Hi David !</p>
                                             <p class="msg-time">8 minutes ago</p>
@@ -131,7 +157,9 @@
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <div class="msg-img"><div class="online off"></div><img class="img-circle" src="/images/avatar3.png" alt=""></div>
+                                            <div class="msg-img">
+                                                <div class="online off"></div>
+                                                <img class="img-circle" src="/images/avatar3.png" alt=""></div>
                                             <p class="msg-name">Christopher Palmer</p>
                                             <p class="msg-text">See you soon !</p>
                                             <p class="msg-time">56 minutes ago</p>
@@ -139,7 +167,9 @@
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <div class="msg-img"><div class="online on"></div><img class="img-circle" src="/images/avatar5.png" alt=""></div>
+                                            <div class="msg-img">
+                                                <div class="online on"></div>
+                                                <img class="img-circle" src="/images/avatar5.png" alt=""></div>
                                             <p class="msg-name">Nick Doe</p>
                                             <p class="msg-text">Nice to meet you</p>
                                             <p class="msg-time">2 hours ago</p>
@@ -147,7 +177,9 @@
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <div class="msg-img"><div class="online on"></div><img class="img-circle" src="/images/avatar2.png" alt=""></div>
+                                            <div class="msg-img">
+                                                <div class="online on"></div>
+                                                <img class="img-circle" src="/images/avatar2.png" alt=""></div>
                                             <p class="msg-name">Sandra Smith</p>
                                             <p class="msg-text">Hey ! I'm working on your project</p>
                                             <p class="msg-time">5 hours ago</p>
@@ -155,7 +187,9 @@
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <div class="msg-img"><div class="online off"></div><img class="img-circle" src="/images/avatar4.png" alt=""></div>
+                                            <div class="msg-img">
+                                                <div class="online off"></div>
+                                                <img class="img-circle" src="/images/avatar4.png" alt=""></div>
                                             <p class="msg-name">Amily Lee</p>
                                             <p class="msg-text">Hi David !</p>
                                             <p class="msg-time">9 hours ago</p>
@@ -167,7 +201,9 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="badge badge-success pull-right">3</span></a>
+                        <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic"
+                           data-toggle="dropdown"><i class="fa fa-bell"></i><span
+                                    class="badge badge-success pull-right">3</span></a>
                         <ul class="dropdown-menu title-caret dropdown-lg" role="menu">
                             <li><p class="drop-title">You have 3 pending tasks !</p></li>
                             <li class="dropdown-menu-list slimscroll tasks">
@@ -199,22 +235,29 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
-                            <span class="user-name">David<i class="fa fa-angle-down"></i></span>
+                        <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic"
+                           data-toggle="dropdown">
+                            <span class="user-name"><?= Yii::$app->user->identity->username ?>
+                                <i class="fa fa-angle-down"></i></span>
                             <img class="img-circle avatar" src="/images/avatar1.png" width="40" height="40" alt="">
                         </a>
                         <ul class="dropdown-menu dropdown-list" role="menu">
                             <li role="presentation"><a href="profile.html"><i class="fa fa-user"></i>Profile</a></li>
-                            <li role="presentation"><a href="calendar.html"><i class="fa fa-calendar"></i>Calendar</a></li>
-                            <li role="presentation"><a href="inbox.html"><i class="fa fa-envelope"></i>Inbox<span class="badge badge-success pull-right">4</span></a></li>
+                            <li role="presentation"><a href="calendar.html"><i class="fa fa-calendar"></i>Calendar</a>
+                            </li>
+                            <li role="presentation"><a href="inbox.html"><i class="fa fa-envelope"></i>Inbox<span
+                                            class="badge badge-success pull-right">4</span></a></li>
                             <li role="presentation" class="divider"></li>
-                            <li role="presentation"><a href="lock-screen.html"><i class="fa fa-lock"></i>Lock screen</a></li>
-                            <li role="presentation"><a href="login.html"><i class="fa fa-sign-out m-r-xs"></i>Log out</a></li>
+                            <li role="presentation"><a href="lock-screen.html"><i class="fa fa-lock"></i>Lock screen</a>
+                            </li>
+                            <li role="presentation"><a href="login.html"><i class="fa fa-sign-out m-r-xs"></i>Log
+                                    out</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="login.html" class="log-out waves-effect waves-button waves-classic">
-                            <span><i class="fa fa-sign-out m-r-xs"></i>Log out</span>
+                        <a href="<?= Url::to(['/site/logout']) ?>"
+                           class="log-out waves-effect waves-button waves-classic">
+                            <span> <?= BaseHtml::icon('log-out') ?> Выход</span>
                         </a>
                     </li>
                     <li>
@@ -226,4 +269,4 @@
             </div><!-- Top Menu -->
         </div>
     </div>
-</div><!-- Navbar -->
+</div>

@@ -1,1 +1,15 @@
 /* Write your custom CSS here */
+.modal-header {
+    padding: 0;
+}
+
+.modal-header .close {
+    margin: 10px 10px 0 0;
+    font-size: 36px;
+}
+
+.btn-rounded {
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 20px;
+}

@@ -11,7 +11,10 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'layout' => 'main-local.php',
     'components' => [
+        'view' => [
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
@@ -41,7 +44,11 @@ return [
             'linkAssets' => true,
             'bundles' => [
                 'yii\web\JqueryAsset' => [
-                    'jsOptions' => ['position' => \yii\web\View::POS_HEAD],
+                    'sourcePath' => null,
+                    'basePath' => '@webroot',
+                    'baseUrl' => '@web',
+                    'jsOptions' => [ 'position' => \yii\web\View::POS_HEAD ],
+                    'js' => ['plugins/jquery/jquery-2.2.4.min.js'],
                 ],
             ],
         ],
@@ -49,19 +56,6 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-            ],
-        ],
-        'assetManager' => [
-            'appendTimestamp' => true,
-            'linkAssets' => true,
-            'bundles' => [
-                'yii\web\JqueryAsset' => [
-                    'sourcePath' => null,
-                    'basePath' => '@webroot',
-                    'baseUrl' => '@web',
-                    'jsOptions' => [ 'position' => \yii\web\View::POS_HEAD ],
-                    'js' => ['plugins/jquery/jquery-2.2.4.min.js']
-                ],
             ],
         ],
     ],
