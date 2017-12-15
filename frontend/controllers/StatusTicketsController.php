@@ -41,7 +41,7 @@ class StatusTicketsController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('_form', [
                 'model' => $model,
             ]);
         }
@@ -54,7 +54,7 @@ class StatusTicketsController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
-            return $this->render('update', [
+            return $this->renderAjax('_form', [
                 'model' => $model,
             ]);
         }

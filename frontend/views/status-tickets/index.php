@@ -1,7 +1,12 @@
 <?php
 
+use yii\bootstrap\BootstrapAsset;
+use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\jui\JuiAsset;
+use yii\web\JqueryAsset;
+use yii\web\View;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
@@ -9,13 +14,26 @@ use yii\widgets\Pjax;
 $this->title = 'Статусы заявок';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<script>
+    var text = 'статус заявок'
+</script>
 <div class="status-ticket-index">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1><?= Html::encode($this->title) ?></h1>
+        </div>
+        <div class="col-sm-6">
+            <br>
+            <br>
+                <?= Html::a('Добавить статус заявок', ['create'],
+                    ['class' => 'btn btn-success btn-addon pull-right btn-modal',
+                        'style' => 'margin-bottom: 7px;', 'data-action' => 'create']) ?>
+        </div>
+    </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Создать статус заявки', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php Modal::begin(['id' => 'pModal', 'header' => '<h2 class="text-center"></h2>']); ?>
+    <div id='modalContent'></div>
+    <?php Modal::end(); ?>
     <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -30,7 +48,28 @@ $this->params['breadcrumbs'][] = $this->title;
                         : '<span class="label label-info" style="background-color: ' . $model->color . ';">' . $model->color . '</span>';
                 },
             ],
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'contentOptions' => ['style' => 'width: 50px;'],
+                'template' => '{update} {delete}',
+                'header' => '',
+                'buttons' => [
+                    'update' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
+                            $url, [
+                                'class' => 'btn btn-info btn-xs btn-rounded btn-modal',
+                                'data-action' => 'update',
+                            ]);
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-remove"></span>',
+                            $url, [
+                                'class' => 'btn btn-danger btn-xs btn-rounded',
+                                'data-confirm' => 'Вы уверены что хотите удалить этот статус?',
+                                'data-method' => 'post',
+                            ]);
+                    },
+                ],
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

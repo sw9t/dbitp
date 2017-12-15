@@ -2,6 +2,7 @@
 
 use frontend\models\AuthAssignment;
 use frontend\models\AuthItem;
+use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
@@ -9,25 +10,27 @@ use yii\widgets\Pjax;
 $this->title = 'Пользователи';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<script>
+    var text = 'пользователя'
+</script>
 <div class="user-index">
-
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-sm-6">
             <h1><?= Html::encode($this->title) ?></h1>
         </div>
-        <div class="col-lg-6">
+        <div class="col-sm-6">
             <br>
             <br>
-            <?= Html::a('Создать пользователя', ['create'], ['class' => 'btn btn-success pull-right']) ?>
+            <?= Html::a('Создать пользователя', ['create'],
+                ['class' => 'btn btn-success pull-right btn-modal',
+                    'data-action' => 'create',
+                ]) ?>
         </div>
     </div>
-    <?php
-
-
-    $columns = [
-
-    ]; ?>
-
+    <?php Modal::begin(['id' => 'pModal', 'header' => '<h2 class="text-center"></h2>']); ?>
+    <div id='modalContent'></div>
+    <?php Modal::end(); ?>
+    <?php $columns = []; ?>
 
     <?php Pjax::begin(); ?>
     <?= GridView::widget([
@@ -45,26 +48,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             ['class' => 'yii\grid\ActionColumn',
-                'contentOptions' => ['style' => 'width : 25px;'],
-                'template' => '{update}',
+                'contentOptions' => ['style' => 'width: 50px;'],
+                'template' => '{update} {delete}',
                 'header' => '',
                 'buttons' => [
                     'update' => function ($url, $model) {
-                        return Html::a('<span class="btn btn-info btn-xs btn-rounded ">Редактировать</span>',
+                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
                             $url, [
+                                'class' => 'btn btn-info btn-xs btn-rounded btn-modal',
+                                'data-action' => 'update',
                             ]);
                     },
-                ],
-            ],
-            ['class' => 'yii\grid\ActionColumn',
-                'contentOptions' => ['style' => 'width : 25px;'],
-                'template' => '{delete}',
-                'header' => '',
-                'buttons' => [
                     'delete' => function ($url, $model) {
-                        return Html::a('<span class="btn btn-danger btn-xs btn-rounded ">Удалить</span>',
+                        return Html::a('<span class="glyphicon glyphicon-remove"></span>',
                             $url, [
-                                'data-confirm' => 'Вы уверены что хотите удалить пользователя?',
+                                'class' => 'btn btn-danger btn-xs btn-rounded',
+                                'data-confirm' => "Следующее действие удалит пользователя из базы.\n" .
+                                    "Это действие необратимо!\n" . "Продолжить?",
                                 'data-method' => 'post',
                             ]);
                     },

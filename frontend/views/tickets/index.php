@@ -49,7 +49,32 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'created_at',
 //            'updated_at',
             // 'is_deleted',
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'contentOptions' => ['style' => 'width : 25px;'],
+                'template' => '{update}',
+                'header' => '',
+                'buttons' => [
+                    'update' => function ($url, $model) {
+                        return Html::a('<span class="btn btn-info btn-xs btn-rounded "><i class="glyphicon glyphicon-pencil"></span>',
+                            $url, [
+                            ]);
+                    },
+                ],
+            ],
+            ['class' => 'yii\grid\ActionColumn',
+                'contentOptions' => ['style' => 'width : 25px;'],
+                'template' => '{delete}',
+                'header' => '',
+                'buttons' => [
+                    'delete' => function ($url, $model) {
+                        return Html::a('<span class="btn btn-danger btn-xs btn-rounded "><i class="glyphicon glyphicon-remove"></span>',
+                            $url, [
+                                'data-confirm' => 'Вы уверены что хотите удалить эту заявку?',
+                                'data-method' => 'post',
+                            ]);
+                    },
+                ],
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

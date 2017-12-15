@@ -22,10 +22,10 @@ class AppAsset extends AssetBundle
 //        'plugins/jquery/jquery-2.2.4.min.js',
     ];
     public $js = [
+        'js/custom.js',
 //        'plugins/jquery-ui/jquery-ui.min.js',
 //        'plugins/bootstrap/js/bootstrap.min.js',
 //        'js/modern.min.js',
-//        'js/custom.js',
 //        'plugins/jquery-blockui/jquery.blockui.js',
 //        'plugins/jquery-slimscroll/jquery.slimscroll.min.js',
 //        'plugins/waves/waves.min.js',

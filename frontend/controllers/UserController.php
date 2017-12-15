@@ -71,7 +71,8 @@ class UserController extends Controller
             }
             $transaction->rollBack();
         }
-        return $this->render('create', [
+        return $this->renderAjax('_form', [
+            'status' => 1,
             'model' => $model,
             'modelAuthAssigment' => $modelAuthAssigment,
             'modelRoles' => $modelRoles,
@@ -105,7 +106,8 @@ class UserController extends Controller
             }
             $transaction->rollBack();
         }
-        return $this->render('update', [
+        return $this->renderAjax('_form', [
+            'status' => 0,
             'model' => $model,
             'modelAuthAssigment' => $modelAuthAssigment,
             'modelRoles' => $modelRoles,

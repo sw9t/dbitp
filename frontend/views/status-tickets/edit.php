@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\StatusTicket */
 
-$this->title = 'Создать статус заявки';
+$this->title = $model->isNewRecord ? 'Создать статус заявки' : 'Редактировать статус заявки';
 $this->params['breadcrumbs'][] = ['label' => 'Статус заявки', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
