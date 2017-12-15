@@ -14,12 +14,18 @@ class AppAsset extends AssetBundle
     public $css = [
 //        'css/site.css',
         'css/fonts.css',
-        'plugins/fontawesome/css/font-awesome.css',
+        'plugins/pace-master/themes/blue/pace-theme-flash.css',
+        'plugins/offcanvasmenueffects/css/menu_cornerbox.css',
         'plugins/uniform/css/uniform.default.min.css',
+        'plugins/line-icons/simple-line-icons.css',
+        'plugins/fontawesome/css/font-awesome.css',
+        'plugins/3d-bold-navigation/css/style.css',
+        'plugins/slidepushmenus/css/component.css',
         'plugins/switchery/switchery.css',
+        'plugins/waves/waves.min.css',
         'css/modern.min.css',
-        'css/custom.css',
         'css/themes/blue.css',
+        'css/custom.css',
     ];
     public $js = [
         'plugins/jquery-blockui/jquery.blockui.js',

@@ -31,15 +31,13 @@ AppAsset::register($this);
     <meta name="author" content="Steelcoders"/>
 
     <!-- Styles -->
-    <link href="/plugins/pace-master/themes/blue/pace-theme-flash.css" rel="stylesheet"/>
-    <link href="/plugins/line-icons/simple-line-icons.css" rel="stylesheet" type="text/css"/>
-    <link href="/plugins/offcanvasmenueffects/css/menu_cornerbox.css" rel="stylesheet" type="text/css"/>
-    <link href="/plugins/waves/waves.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/plugins/3d-bold-navigation/css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="/plugins/slidepushmenus/css/component.css" rel="stylesheet" type="text/css"/>
+
 
     <script src="/plugins/3d-bold-navigation/js/modernizr.js"></script>
     <script src="/plugins/offcanvasmenueffects/js/snap.svg-min.js"></script>
+    <script>
+        var text = '';
+    </script>
 </head>
 
 <body class="page-header-fixed">
