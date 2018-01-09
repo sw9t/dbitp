@@ -8,6 +8,7 @@ use frontend\assets\AppAsset;
 use yii\bootstrap\Modal;
 use yii\helpers\Html;
 
+Yii::$app->name='Helpdesk';
 $user = !empty(Yii::$app->user->identity) ? Yii::$app->user->identity : new \common\models\User();
 if ($user->isNewRecord) {
     $user->username = 'Guest';
