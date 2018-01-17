@@ -4,9 +4,8 @@ namespace frontend\models;
 
 use yii\db\ActiveRecord;
 
-class User extends ActiveRecord
+class User extends \common\models\User
 {
-
     public static function tableName()
     {
         return 'user';
@@ -29,11 +28,12 @@ class User extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'username' => 'Username',
+            'username' => 'Имя пользователя',
+            'password' => 'Пароль',
             'auth_key' => 'Auth Key',
             'password_hash' => 'Password Hash',
             'password_reset_token' => 'Password Reset Token',
-            'email' => 'Email',
+            'email' => 'Адрес эл. почты',
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

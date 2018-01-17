@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-sm-6">
             <?= Html::a('<i class = \'fa fa-plus\'></i>' . '  Создать пользователя', ['create'],
                 ['class' => 'btn btn-success btn-addon pull-right btn-modal',
-                    'data-action' => 'create',
+                    'data-action' => 'create', 'data-modalclass' => 'modal-lg',
                 ]) ?>
         </div>
     </div>

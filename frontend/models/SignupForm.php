@@ -11,6 +11,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $repeat_password;
 
     public function rules()
     {
@@ -28,6 +29,7 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+            [['repeat_password'], 'compare', 'compareAttribute' => 'password', 'message' => 'Пароли не совпадают'],
         ];
     }
 
@@ -60,6 +62,7 @@ class SignupForm extends Model
             'id' => 'ID',
             'username' => 'Имя пользователя',
             'password' => 'Пароль',
+            'repeat_password' => 'Повторить пароль',
         ];
     }
 

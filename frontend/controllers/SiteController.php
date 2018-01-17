@@ -1,6 +1,9 @@
 <?php
+
 namespace frontend\controllers;
 
+use frontend\models\AuthAssignment;
+use frontend\models\UserInfo;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -153,16 +156,23 @@ class SiteController extends Controller
     {
         $this->layout = 'login';
         $model = new SignupForm();
+        $modelUserInfo = new UserInfo();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
+                if ($modelUserInfo->load(Yii::$app->request->post())) {
+                    $modelUserInfo->id = $user->id;
+                    $modelUserInfo->id_user = $user->id;
+                    $modelUserInfo->save();
+                    if (Yii::$app->getUser()->login($user)) {
+                        return $this->goHome();
+                    }
                 }
             }
         }
 
         return $this->render('signup', [
             'model' => $model,
+            'modelUserInfo' => $modelUserInfo,
         ]);
     }
 

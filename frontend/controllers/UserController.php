@@ -109,8 +109,12 @@ class UserController extends Controller
                         var_dump($modelAuthAssigment->getErrors());
                         exit;
                     }
-                    $transaction->commit();
-                    return $this->redirect('index');
+                    if ($modelUserInfo->load(Yii::$app->request->post())) {
+                        if ($modelUserInfo->createUsersInfo($model->id)) {
+                            $transaction->commit();
+                            return $this->redirect('index');
+                        }
+                    }
                 }
             }
             $transaction->rollBack();

@@ -14,6 +14,7 @@ class AppAsset extends AssetBundle
     public $css = [
 //        'css/site.css',
         'css/fonts.css',
+        'plugins/bootstrap-datepicker/css/datepicker3.css',
         'plugins/pace-master/themes/blue/pace-theme-flash.css',
 //        'plugins/offcanvasmenueffects/css/menu_cornerbox.css',
         'plugins/uniform/css/uniform.default.min.css',
@@ -28,6 +29,8 @@ class AppAsset extends AssetBundle
         'css/custom.css',
     ];
     public $js = [
+        'plugins/bootstrap-datepicker/js/bootstrap-datepicker.js',
+        'plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.ru.js',
         'plugins/jquery-blockui/jquery.blockui.js',
         'plugins/jquery-slimscroll/jquery.slimscroll.min.js',
         'plugins/waves/waves.min.js',

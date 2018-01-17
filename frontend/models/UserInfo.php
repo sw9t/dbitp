@@ -44,6 +44,7 @@ class UserInfo extends ActiveRecord
     public function createUsersInfo($id)
     {
         $this->id = $id;
+        $this->id_user = $id;
         $this->img = UploadedFile::getInstance($this, 'img');
         if ($this->img) {
             if ($this->validate()) {

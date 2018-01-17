@@ -7,7 +7,7 @@ $userInfoModel=\frontend\models\UserInfo::find()->where(['id_user'=>$user->id])-
 if(!empty($userInfoModel->photo)){
     $photo=Yii::$app->params['pathDownloads'] .$userInfoModel->photo;
 }else{
-    $photo=Yii::$app->params['pathDownloads'] . 'no-profile.png';
+    $photo=Yii::$app->params['pathDownloads'] . 'no-avatar.png';
 }
 
 ?>

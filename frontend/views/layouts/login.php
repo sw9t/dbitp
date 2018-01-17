@@ -19,7 +19,7 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <title><?php //= Html::encode($this->title) ?></title>
+    <title><?= Html::encode($this->title) ?></title>
     <meta charset="<?= Yii::$app->charset ?>">
     <?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>
@@ -31,15 +31,6 @@ AppAsset::register($this);
     <meta name="author" content="Steelcoders"/>
 
     <!-- Styles -->
-    <link href="/plugins/pace-master/themes/blue/pace-theme-flash.css" rel="stylesheet"/>
-    <link href="/plugins/line-icons/simple-line-icons.css" rel="stylesheet" type="text/css"/>
-    <link href="/plugins/offcanvasmenueffects/css/menu_cornerbox.css" rel="stylesheet" type="text/css"/>
-    <link href="/plugins/waves/waves.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/plugins/3d-bold-navigation/css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="/plugins/slidepushmenus/css/component.css" rel="stylesheet" type="text/css"/>
-
-    <script src="/plugins/3d-bold-navigation/js/modernizr.js"></script>
-    <script src="/plugins/offcanvasmenueffects/js/snap.svg-min.js"></script>
 </head>
 
 <body class="page-login">
@@ -48,19 +39,17 @@ AppAsset::register($this);
 <main class="page-content">
     <div class="page-inner">
         <div id="main-wrapper">
+            <h1 class="text-center"><a href="/" class="text-xl">Helpdesk</a></h1>
+            <br>
+            <br>
             <div class="row">
-                <div class="col-md-4 center">
-                    <div class="login-box">
-                        <h1 class="text-center"><a href="/" class="text-xl ">Helpdesk</a></h1>
-                        <br>
-                        <br>
-                        <?= $content ?>
-                        <p class="text-center m-t-xs text-sm"><?= date('Y')?> &copy; Application.</p>
-                    </div>
-                </div>
+                <?= $content ?>
             </div><!-- Row -->
         </div><!-- Main Wrapper -->
     </div><!-- Page Inner -->
+    <div class="page-footer" style="width: 100%; position: relative">
+        <p class="text-center m-t-xs text-sm"><?= date('Y') ?> &copy; Application.</p>
+    </div>
 </main><!-- Page Content -->
 <?php $this->endBody() ?>
 </body>
