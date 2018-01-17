@@ -7,7 +7,7 @@ use yii\helpers\Url;
     <div class="page-sidebar-inner slimscroll">
         <div class="sidebar-header">
             <div class="sidebar-profile">
-                <a href="" id="profile-menu-link">
+                <a href="#" id="profile-menu-link">
                     <div class="sidebar-profile-image">
                         <img src="/images/profile-menu-image.png" class="img-circle img-responsive" alt="">
                     </div>

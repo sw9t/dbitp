@@ -16,7 +16,7 @@ class StatusTicket extends ActiveRecord
     public function rules()
     {
         return [
-            [['is_deleted'], 'integer'],
+            [['is_deleted','is_final'], 'integer'],
             [['name', 'color'], 'string', 'max' => 255],
         ];
     }
@@ -28,6 +28,7 @@ class StatusTicket extends ActiveRecord
             'name' => 'Статус',
             'color' => 'Цвет',
             'is_deleted' => 'Удален',
+            'is_final'=>'Финальный'
         ];
     }
 

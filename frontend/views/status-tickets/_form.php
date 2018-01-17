@@ -20,6 +20,11 @@ use yii\widgets\ActiveForm;
                 ->input('color', ['class' => "form-control",]) ?>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <?= $form->field($model, 'is_final')->checkbox() ?>
+        </div>
+    </div>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Добавить' : 'Сохранить',
             ['class' => $model->isNewRecord ? 'btn btn-success btn-block' : 'btn btn-primary btn-block']) ?>

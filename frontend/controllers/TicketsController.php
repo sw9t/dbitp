@@ -50,7 +50,6 @@ class TicketsController extends Controller
         $model = new Tickets();
         $searchModel = new TicketsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

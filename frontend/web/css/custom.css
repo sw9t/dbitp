@@ -13,3 +13,9 @@
     padding-right: 5px;
     border-radius: 20px;
 }
+
+@media screen and (min-width: 768px) {
+    .page-footer {
+        width: calc(100% - 160px);
+    }
+}
