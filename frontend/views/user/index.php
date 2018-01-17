@@ -19,10 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <h1><?= Html::encode($this->title) ?></h1>
         </div>
         <div class="col-sm-6">
-            <br>
-            <br>
-            <?= Html::a('Создать пользователя', ['create'],
-                ['class' => 'btn btn-success pull-right btn-modal',
+            <?= Html::a('<i class = \'fa fa-plus\'></i>' . '  Создать пользователя', ['create'],
+                ['class' => 'btn btn-success btn-addon pull-right btn-modal',
                     'data-action' => 'create',
                 ]) ?>
         </div>
@@ -45,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             ['class' => 'yii\grid\ActionColumn',
-                'contentOptions' => ['style' => 'width: 50px;'],
+                'contentOptions' => ['style' => 'width: 85px;'],
                 'template' => '{update} {delete}',
                 'header' => '',
                 'buttons' => [

@@ -23,9 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h1><?= Html::encode($this->title) ?></h1>
         </div>
         <div class="col-sm-6">
-            <br>
-            <br>
-                <?= Html::a('Добавить статус заявок', ['create'],
+                <?= Html::a('<i class = \'fa fa-plus\'></i>' . '  Добавить статус заявок', ['create'],
                     ['class' => 'btn btn-success btn-addon pull-right btn-modal',
                         'style' => 'margin-bottom: 7px;', 'data-action' => 'create']) ?>
         </div>
@@ -46,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             ['class' => 'yii\grid\ActionColumn',
-                'contentOptions' => ['style' => 'width: 50px;'],
+                'contentOptions' => ['style' => 'width: 85px;'],
                 'template' => '{update} {delete}',
                 'header' => '',
                 'buttons' => [

@@ -18,7 +18,7 @@ class m171212_213626_create_new_user_admin extends Migration
             'username' => 'admin',
             'email' => 'oksana@oksana.oksana',
         ]);
-        RbacController::init();
+        RbacController::actionInit();
         $user->setPassword('123456');
         $user->generateAuthKey();
 

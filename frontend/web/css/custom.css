@@ -14,6 +14,10 @@
     border-radius: 20px;
 }
 
+h1 {
+    margin-top: 0;
+}
+
 @media screen and (min-width: 768px) {
     .page-footer {
         width: calc(100% - 160px);

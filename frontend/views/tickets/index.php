@@ -8,14 +8,23 @@ use yii\widgets\Pjax;
 $this->title = 'Заявки';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<script>
+    var text = 'заявку'
+</script>
 <div class="tickets-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php if (Yii::$app->user->can('declarer')): ?>
-        <?= Html::a('<i class = \'fa fa-plus\'></i>' . '  Создать заявку',
-            ['create'],
-            ['class' => 'btn btn-success btn-addon btn-modal', 'style' => 'margin-bottom: 7px;']) ?>
-    <?php endif; ?>
+    <div class="row">
+        <div class="col-sm-6">
+            <h1><?= Html::encode($this->title) ?></h1>
+        </div>
+        <div class="col-sm-6">
+            <?php if (Yii::$app->user->can('declarer')): ?>
+                <?= Html::a('<i class = \'fa fa-plus\'></i>' . '  Создать заявку',
+                    ['create'],
+                    ['class' => 'btn btn-success btn-addon pull-right btn-modal',
+                        'style' => 'margin-bottom: 7px;', 'data-action' => 'create']) ?>
+            <?php endif; ?>
+        </div>
+    </div>
     <?php Pjax::begin(); ?>
 
     <?php foreach ($dataProvider->getModels() as $model): ?>
@@ -77,12 +86,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                     Исполнять</a>
                             <?php endif; ?>
                             <?php if (Yii::$app->user->can('executor') &&
-                                Yii::$app->user->id==$model->executor_id): ?>
+                                Yii::$app->user->id == $model->executor_id || Yii::$app->user->can('admin')): ?>
                                 <a href="#" class="btn btn-sm btn-info btn-addon"><i class="fa fa-edit"></i>
                                     Редактировать</a>
                             <?php endif; ?>
                             <?php if (Yii::$app->user->can('admin') ||
-                                Yii::$app->user->id==$model->declarer_id): ?>
+                                Yii::$app->user->id == $model->declarer_id): ?>
                                 <a href="#" class="btn btn-sm btn-danger btn-addon"><i class="fa fa-trash"></i> Удалить</a>
                             <?php endif; ?>
                         </div>
