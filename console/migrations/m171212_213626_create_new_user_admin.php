@@ -1,6 +1,7 @@
 <?php
 
 use common\models\User;
+use console\controllers\RbacController;
 use yii\db\Migration;
 
 /**
@@ -17,6 +18,7 @@ class m171212_213626_create_new_user_admin extends Migration
             'username' => 'admin',
             'email' => 'oksana@oksana.oksana',
         ]);
+        RbacController::init();
         $user->setPassword('123456');
         $user->generateAuthKey();
 

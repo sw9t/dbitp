@@ -18,7 +18,7 @@ class m171212_225122_create_new_table_tickets extends Migration
             'executor_id'=>$this->integer(),
             'created_at'=>'timestamp not null default current_timestamp',
             'updated_at'=>'timestamp default current_timestamp on update current_timestamp',
-            'is_deleted'=>$this->integer(),
+            'is_deleted'=>$this->integer()->notNull()->defaultValue(0),
         ]);
         $this->addForeignKey('fk-user-declarer',$this->tableName,'declarer_id','{{%user}}','id','CASCADE');
         $this->addForeignKey('fk-user-executor',$this->tableName,'executor_id','{{%user}}','id','CASCADE');
