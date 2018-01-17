@@ -2,6 +2,13 @@
 
 use yii\helpers\Url;
 
+$userInfoModel=\frontend\models\UserInfo::find()->where(['id_user'=>$user->id])->one();
+if(!empty($userInfoModel->photo)){
+    $photo=Yii::$app->params['pathDownloads'] .$userInfoModel->photo;
+}else{
+    $photo=Yii::$app->params['pathDownloads'] . 'no-profile.png';
+}
+
 ?>
 <div class="page-sidebar sidebar">
     <div class="page-sidebar-inner slimscroll">
@@ -9,11 +16,11 @@ use yii\helpers\Url;
             <div class="sidebar-profile">
                 <a href="#" id="profile-menu-link">
                     <div class="sidebar-profile-image">
-                        <img src="/images/profile-menu-image.png" class="img-circle img-responsive" alt="">
+                        <img src="<?=$photo?>" class="img-circle img-responsive" alt="">
                     </div>
                     <div class="sidebar-profile-details">
-                        <span><?= $user->username ?><br>
-                            <small><?= $user->email ?></small></span>
+                        <span><?= $userInfoModel->first_name ?><br>
+                            <small><?= $userInfoModel->last_name ?></small></span>
                     </div>
                 </a>
             </div>

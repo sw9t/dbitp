@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use frontend\models\AuthAssignment;
 use frontend\models\AuthItem;
 use frontend\models\SignupForm;
+use frontend\models\UserInfo;
 use Yii;
 use common\models\User;
 use frontend\models\UserSearch;
@@ -49,9 +50,11 @@ class UserController extends Controller
         ]);
     }
 
+
     public function actionCreate()
     {
         $model = new SignupForm();
+        $modelUserInfo = new UserInfo();
         $modelAuthAssigment = new AuthAssignment();
         $modelRoles = $this->getRolesList();
         if ($model->load(Yii::$app->request->post())) {
@@ -65,8 +68,12 @@ class UserController extends Controller
                         var_dump($modelAuthAssigment->getErrors());
                         exit;
                     }
-                    $transaction->commit();
-                    return $this->redirect('index');
+                    if ($modelUserInfo->load(Yii::$app->request->post())) {
+                        if ($modelUserInfo->createUsersInfo($user->id)) {
+                            $transaction->commit();
+                            return $this->redirect('index');
+                        }
+                    }
                 }
             }
             $transaction->rollBack();
@@ -74,6 +81,7 @@ class UserController extends Controller
         return $this->renderAjax('_form', [
             'status' => 1,
             'model' => $model,
+            'modelUserInfo' => $modelUserInfo,
             'modelAuthAssigment' => $modelAuthAssigment,
             'modelRoles' => $modelRoles,
         ]);
@@ -86,8 +94,9 @@ class UserController extends Controller
 
     public function actionUpdate($id)
     {
-        $model = \frontend\models\User::find()->where(['id' => $id])->one();
+        $model = User::find()->where(['id' => $id])->one();
         $modelAuthAssigment = AuthAssignment::find()->where(['user_id' => $id])->one();
+        $modelUserInfo = UserInfo::find()->where(['id_user' => $id])->one();
         $modelRoles = $this->getRolesList();
         if ($model->load(Yii::$app->request->post())) {
             $transaction = Yii::$app->db->beginTransaction();
@@ -109,6 +118,7 @@ class UserController extends Controller
         return $this->renderAjax('_form', [
             'status' => 0,
             'model' => $model,
+            'modelUserInfo' => $modelUserInfo,
             'modelAuthAssigment' => $modelAuthAssigment,
             'modelRoles' => $modelRoles,
         ]);

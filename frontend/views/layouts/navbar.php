@@ -3,6 +3,12 @@
 use yii\bootstrap\BaseHtml;
 use yii\helpers\Html;
 use yii\helpers\Url;
+$userInfoModel=\frontend\models\UserInfo::find()->where(['id_user'=>$user->id])->one();
+if(!empty($userInfoModel->photo)){
+    $photo=Yii::$app->params['pathDownloads'] .$userInfoModel->photo;
+}else{
+    $photo=Yii::$app->params['pathDownloads'] . 'no-profile.png';
+}
 
 ?>
 <div class="navbar">
@@ -134,9 +140,9 @@ use yii\helpers\Url;
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic"
                            data-toggle="dropdown">
-                            <span class="user-name"><?= $user->username ?>
+                            <span class="user-name"><?=  $userInfoModel->first_name.' '.$userInfoModel->last_name ?>
                                 <i class="fa fa-angle-down"></i></span>
-                            <img class="img-circle avatar" src="/images/avatar1.png" width="40" height="40" alt="">
+                            <img class="img-circle avatar" src="<?=$photo?>" width="40" height="40" alt="">
                         </a>
                         <ul class="dropdown-menu dropdown-list" role="menu">
                             <li role="presentation"><a href="profile.html"><i class="fa fa-user"></i>Профиль</a></li>

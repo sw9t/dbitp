@@ -49,4 +49,9 @@ class User extends ActiveRecord
     {
         return $this->hasMany(Tickets::className(), ['executor_id' => 'id']);
     }
+
+    public function getUserInfo()
+    {
+        return $this->hasMany(UserInfo::className(), ['id_user' => 'id']);
+    }
 }

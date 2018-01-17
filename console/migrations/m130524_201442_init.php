@@ -4,6 +4,8 @@ use yii\db\Migration;
 
 class m130524_201442_init extends Migration
 {
+    public $tableName1 = '{{%user_info}}';
+
     public function up()
     {
         $tableOptions = null;
@@ -24,6 +26,7 @@ class m130524_201442_init extends Migration
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
         ], $tableOptions);
+
     }
 
     public function down()
