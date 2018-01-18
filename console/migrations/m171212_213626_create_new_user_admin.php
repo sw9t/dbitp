@@ -55,7 +55,7 @@ class m171212_213626_create_new_user_admin extends Migration
     public function safeDown()
     {
         User::deleteAll(['id'=>1]);
-        $this->dropTable($this->tableName);
+        $this->dropTable($this->tableName1);
 
     }
 }
