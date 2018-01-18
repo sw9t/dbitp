@@ -33,6 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'tableOptions' => ['id' => 'order-table', 'class' => 'display table offers-table table-striped'],
+        'formatter' => ['class' => 'yii\i18n\Formatter', 'nullDisplay' => '-'],
         'columns' => [
             'name',
             [

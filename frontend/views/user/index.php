@@ -2,6 +2,7 @@
 
 use frontend\models\AuthAssignment;
 use frontend\models\AuthItem;
+use frontend\models\UserInfo;
 use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -31,9 +32,46 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'tableOptions' => ['id' => 'order-table', 'class' => 'display table offers-table table-striped'],
+        'formatter' => ['class' => 'yii\i18n\Formatter', 'nullDisplay' => '-'],
         'columns' => [
-            'id',
+            [
+                'label' => '',
+                'format' => 'raw',
+                'contentOptions' => ['style' => 'width: 80px;text-align:center;'],
+                'value' => function ($model) {
+                    $image = UserInfo::find()->where(['id_user' => $model->id])->one();
+                    if (!empty($image)) {
+                        return Html::img(Yii::$app->params['pathDownloads'] . $image->photo, [
+                            'alt' => 'картинка в gridview',
+                            'style' => 'width:30px;height: 30px;', 'class' => 'imageintable',
+                        ]);
+                    } else {
+                        return Html::img( Yii::$app->params['pathDownloads'] . 'no-avatar.png' , [
+                            'alt' => 'yii2 - картинка в gridview',
+                            'style' => 'width:30px;height: 30px;',
+
+                        ]);
+                    }
+                },
+            ],
+            [
+                'attribute' => 'id',
+                'contentOptions' => ['style' => 'width: 80px;text-align:center;'],
+            ],
             'username',
+            [
+                'label' => 'Имя',
+                'content' => function ($model) {
+                    return UserInfo::find()->where(['id_user' => $model->id])->one()->first_name;
+                }
+            ],
+            [
+                'label' => 'Фамилия',
+                'content' => function ($model) {
+                    return UserInfo::find()->where(['id_user' => $model->id])->one()->last_name;
+                }
+            ],
             [
                 'label' => 'Роль',
                 'content' => function ($model) {
@@ -42,6 +80,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $role->description;
                 }
             ],
+
+
             ['class' => 'yii\grid\ActionColumn',
                 'contentOptions' => ['style' => 'width: 85px;'],
                 'template' => '{update} {delete}',
@@ -52,6 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             $url, [
                                 'class' => 'btn btn-info btn-xs btn-rounded btn-modal',
                                 'data-action' => 'update',
+                                'data-modalclass' => 'modal-lg',
                             ]);
                     },
                     'delete' => function ($url, $model) {
