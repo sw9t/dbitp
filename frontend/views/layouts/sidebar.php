@@ -14,7 +14,7 @@ if (!empty($userInfoModel->photo)) {
     <div class="page-sidebar-inner slimscroll">
         <div class="sidebar-header">
             <div class="sidebar-profile">
-                <a href="#" id="profile-menu-link">
+                <a href="/user/profile" id="profile-menu-link">
                     <div class="sidebar-profile-image">
                         <img src="<?= $photo ?>" class="img-circle img-responsive" alt="">
                     </div>

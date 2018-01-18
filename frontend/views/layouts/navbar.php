@@ -145,7 +145,7 @@ if(!empty($userInfoModel->photo)){
                             <img class="img-circle avatar" src="<?=$photo?>" width="40" height="40" alt="">
                         </a>
                         <ul class="dropdown-menu dropdown-list" role="menu">
-                            <li role="presentation"><a href="profile.html"><i class="fa fa-user"></i>Профиль</a></li>
+                            <li role="presentation"><a href="/user/profile"><i class="fa fa-user"></i>Профиль</a></li>
                             <li role="presentation"><a href="<?= Url::to(['/site/logout']) ?>" data-method="post">
                                     <i class="fa fa-sign-out m-r-xs"></i>
                                     Выход</a>

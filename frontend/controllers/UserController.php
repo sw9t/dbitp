@@ -141,12 +141,20 @@ class UserController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionProfile()
+    public function actionProfile($id=null)
     {
-        return $this->render('profile', [
-            'user' => User::findOne(Yii::$app->user->id),
-            'userInfo' => UserInfo::findOne(['id_user' => Yii::$app->user->id])
-        ]);
+        if($id==null){
+            return $this->render('profile', [
+                'user' => User::findOne(Yii::$app->user->id),
+                'userInfo' => UserInfo::findOne(['id_user' => Yii::$app->user->id])
+            ]);
+        }else{
+            return $this->render('profile', [
+                'user' => User::findOne($id),
+                'userInfo' => UserInfo::findOne(['id_user' => $id])
+            ]);
+        }
+
     }
 
     protected function findModel($id)

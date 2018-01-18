@@ -1,5 +1,8 @@
 <?php
 
+use frontend\models\StatusTicket;
+use frontend\models\Tickets;
+use yii\db\Expression;
 use yii\helpers\Html;
 
 $this->title = 'Профиль пользователя: ' . $user->username;
@@ -52,14 +55,14 @@ $this->title = 'Профиль пользователя: ' . $user->username;
             </div>
             <div class="row">
                 <div class="col-sm-4">
-                    <a class="btn btn-primary btn-block btn-modal" href="/user/update?id=1"
+                    <a class="btn btn-primary btn-block btn-modal" href="/user/update?id=<?=$user->id?>"
                        data-action="update" data-modalclass="modal-lg">
                         <i class="fa fa-user m-r-xs"></i>Редактировать
                     </a>
 
                 </div>
                 <div class="col-sm-4">
-                    <a class="btn btn-primary btn-block">
+                    <a class="btn btn-primary btn-block btn-modal" href="#">
                         <i class="fa fa-lock m-r-xs"></i>Изменить пароль
                     </a>
                 </div>
@@ -77,23 +80,27 @@ $this->title = 'Профиль пользователя: ' . $user->username;
                         <tbody>
                         <tr>
                             <th scope="row">Мною создано заявок:</th>
-                            <td><span class="pull-right">9000+</span></td>
+                            <td><span class="pull-right"><?= Tickets::find()->where(['declarer_id'=>$user->id])->count()?></span></td>
                         </tr>
                         <tr>
                             <th scope="row">Моих заявок в ожидании:</th>
-                            <td><span class="pull-right">900+</span></td>
+                            <td><span class="pull-right"><?= Tickets::find()->where(['declarer_id'=>$user->id])
+                                        ->andWhere(['IS','executor_id',new Expression('null')])->count()?></span></td>
                         </tr>
                         <tr>
                             <th scope="row">Моих заявок в обработке:</th>
-                            <td><span class="pull-right">100</span></td>
+                            <td><span class="pull-right"><?= Tickets::find()->where(['declarer_id'=>$user->id])
+                                        ->andWhere(['IS NOT','executor_id',new Expression('null')])->count()?></span></td>
                         </tr>
                         <tr>
                             <th scope="row">Моих заявок закрыто:</th>
-                            <td><span class="pull-right">3000</span></td>
+                            <td><span class="pull-right"><?= Tickets::find()->joinWith(StatusTicket::tableName())->where(['declarer_id'=>$user->id])
+                                        ->andWhere(['status_ticket.is_final'=>1])->count()?></span></td>
                         </tr>
                         <tr>
                             <th scope="row">Мною обработано заявок:</th>
-                            <td><span class="pull-right">0</span></td>
+                            <td><span class="pull-right"><?= Tickets::find()->joinWith(StatusTicket::tableName())->where(['executor_id'=>$user->id])
+                                        ->andWhere(['status_ticket.is_final'=>1])->count()?></span></td>
                         </tr>
                         <tr>
                             <th scope="row"></th>
