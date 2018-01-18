@@ -67,26 +67,33 @@ class TicketsSearch extends Tickets
                 $query->andFilterWhere(['IS', 'executor_id', (new Expression('Null'))]);
                 break;
             case 'processing' :
-                $query->andFilterWhere([
-                    'status_ticket.is_final' => 0,
-                    'executor_id' => Yii::$app->user->id,
-                ]);
+                if (!Yii::$app->user->can('admin')) {
+                    $query->andFilterWhere([
+                        'status_ticket.is_final' => 0,
+                        'executor_id' => Yii::$app->user->id,
+                    ]);
+                } else {
+                    $query->andFilterWhere([
+                        'status_ticket.is_final' => 0,
+                    ]);
+                    $query->andFilterWhere(['NOT', 'executor_id', (new Expression('Null'))]);
+                }
                 $query->orderBy('tickets.id DESC');
                 break;
             case 'completed':
-                if(!Yii::$app->user->can('admin') && Yii::$app->user->can('declarer')){
+                if (!Yii::$app->user->can('admin') && Yii::$app->user->can('declarer')) {
                     $query->andFilterWhere([
                         'status_ticket.is_final' => 1,
                         'declarer_id' => Yii::$app->user->id,
                     ]);
                 }
-                if(!Yii::$app->user->can('admin') && Yii::$app->user->can('executor')){
+                if (!Yii::$app->user->can('admin') && Yii::$app->user->can('executor')) {
                     $query->andFilterWhere([
                         'status_ticket.is_final' => 1,
                         'executor_id' => Yii::$app->user->id,
                     ]);
                 }
-                if(Yii::$app->user->can('admin')){
+                if (Yii::$app->user->can('admin')) {
                     $query->andFilterWhere([
                         'status_ticket.is_final' => 1,
                     ]);
