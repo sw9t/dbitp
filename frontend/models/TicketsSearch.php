@@ -76,7 +76,7 @@ class TicketsSearch extends Tickets
                     $query->andFilterWhere([
                         'status_ticket.is_final' => 0,
                     ]);
-                    $query->andFilterWhere(['not', ['executor_id' => null]]);
+                    $query->andFilterWhere(['IS NOT', 'executor_id', (new Expression('Null'))]);
                 }
                 $query->orderBy('tickets.id DESC');
                 break;
