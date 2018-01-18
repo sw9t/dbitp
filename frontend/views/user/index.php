@@ -37,7 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             [
                 'attribute' => 'id',
-                'contentOptions' => ['style' => 'width: 80px;text-align:center;'],
+                'filter'=>'',
+                'contentOptions' => ['style' => 'width: 40px;text-align:center;'],
             ],
             [
                 'label' => '',
