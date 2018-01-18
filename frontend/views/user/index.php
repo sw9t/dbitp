@@ -36,6 +36,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'formatter' => ['class' => 'yii\i18n\Formatter', 'nullDisplay' => '-'],
         'columns' => [
             [
+                'attribute' => 'id',
+                'contentOptions' => ['style' => 'width: 80px;text-align:center;'],
+            ],
+            [
                 'label' => '',
                 'format' => 'raw',
                 'contentOptions' => ['style' => 'width: 80px;text-align:center;'],
@@ -44,10 +48,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     if (!empty($image)) {
                         return Html::img(Yii::$app->params['pathDownloads'] . $image->photo, [
                             'alt' => 'картинка в gridview',
-                            'style' => 'width:30px;height: 30px;', 'class' => 'imageintable',
+                            'style' => 'width:30px;height: 30px;', 'class' => 'imageintable myImgPopUp',
                         ]);
                     } else {
-                        return Html::img( Yii::$app->params['pathDownloads'] . 'no-avatar.png' , [
+                        return Html::img(Yii::$app->params['pathDownloads'] . 'no-avatar.png', [
                             'alt' => 'yii2 - картинка в gridview',
                             'style' => 'width:30px;height: 30px;',
 
@@ -56,20 +60,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
-                'attribute' => 'id',
-                'contentOptions' => ['style' => 'width: 80px;text-align:center;'],
+                'attribute' => 'username',
             ],
-            'username',
             [
-                'label' => 'Имя',
+                'attribute' => 'email',
                 'content' => function ($model) {
-                    return UserInfo::find()->where(['id_user' => $model->id])->one()->first_name;
+                    return !empty($model->email) ? Html::a($model->email, 'mailto:' . $model->email, ['target' => '_blank']) : '-';
                 }
             ],
             [
-                'label' => 'Фамилия',
+                'label' => 'Полное имя',
                 'content' => function ($model) {
-                    return UserInfo::find()->where(['id_user' => $model->id])->one()->last_name;
+                    $userInfo = UserInfo::find()->where(['id_user' => $model->id])->one();
+                    return $userInfo->first_name . ' ' . $userInfo->last_name;
                 }
             ],
             [
@@ -78,6 +81,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     $authAssigment = AuthAssignment::find()->where(['user_id' => $model->id])->one();
                     $role = AuthItem::find()->where(['name' => $authAssigment->item_name])->one();
                     return $role->description;
+                }
+            ],
+            [
+                'label' => 'Дата рождения',
+                'content' => function ($model) {
+                    $userInfo = UserInfo::find()->where(['id_user' => $model->id])->one();
+                    return !empty($userInfo->date_of_birth) ? $userInfo->date_of_birth : '-';
+                }
+            ],
+            [
+                'label' => 'Номер тел.',
+                'content' => function ($model) {
+                    $userInfo = UserInfo::find()->where(['id_user' => $model->id])->one();
+                    return !empty($userInfo->phone_number) ? Html::a($userInfo->phone_number, 'tel:' . $userInfo->phone_number) : '-';
                 }
             ],
 

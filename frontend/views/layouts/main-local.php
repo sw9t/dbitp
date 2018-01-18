@@ -7,7 +7,7 @@ use frontend\assets\AppAsset;
 use yii\bootstrap\Modal;
 use yii\helpers\Html;
 
-Yii::$app->name='Helpdesk';
+Yii::$app->name = 'Helpdesk';
 $user = !empty(Yii::$app->user->identity) ? Yii::$app->user->identity : new \common\models\User();
 if ($user->isNewRecord) {
     $user->username = 'Guest';
@@ -32,8 +32,8 @@ AppAsset::register($this);
 
     <!-- Styles -->
 
-<!--    <script src="/plugins/3d-bold-navigation/js/modernizr.js"></script>-->
-<!--    <script src="/plugins/offcanvasmenueffects/js/snap.svg-min.js"></script>-->
+    <!--    <script src="/plugins/3d-bold-navigation/js/modernizr.js"></script>-->
+    <!--    <script src="/plugins/offcanvasmenueffects/js/snap.svg-min.js"></script>-->
     <script>
         var text = '';
     </script>
@@ -69,7 +69,9 @@ AppAsset::register($this);
 <!-- Input Group -->
 <!--</form>-->
 <!-- Search Form -->
+
 <main class="page-content content-wrap container">
+
     <?php Modal::begin([
         'id' => 'pModal',
         'header' => '<h2 class="text-center"></h2>',
@@ -77,10 +79,11 @@ AppAsset::register($this);
     <div id='modalContent'></div>
     <?php Modal::end(); ?>
     <?= $this->render(@'navbar', ['user' => $user]) ?>
-<!--    --><?php //= $this->render(@'chat') ?>
+    <!--    --><?php //= $this->render(@'chat') ?>
     <?= $this->render(@'sidebar', ['user' => $user]) ?>
     <div class="page-inner">
         <div id="main-wrapper">
+
             <?= $content ?>
         </div>
         <?= $this->render(@'footer') ?>

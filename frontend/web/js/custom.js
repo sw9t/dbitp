@@ -49,7 +49,7 @@ function performAjaxAction(qwe) {
     $.ajax({
         method: 'POST',
         url: $(qwe).attr('href'),
-        success: function () {
+        success: function () {s
             $.pjax.reload({
                 container: '#tickets-pjax'
             });
@@ -64,3 +64,4 @@ $(function () {
         });
     }, 10000);
 });
+
