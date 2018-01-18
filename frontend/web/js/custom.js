@@ -16,6 +16,9 @@ $(document).on('click', '.btn-modal', function (e) {
         .find('.modal-header h2').text(header).parent().parent()
         .find('.modal-body')
         .load($(this).attr('href'));
+    setTimeout(function () {
+        $(document).find('#redirect-url').val(window.location);
+    }, 200);
 });
 
 $('.btn-type-action').click(function (e) {
