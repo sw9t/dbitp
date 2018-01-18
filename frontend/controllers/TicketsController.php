@@ -22,12 +22,17 @@ class TicketsController extends Controller
                     [
                         'allow' => true,
                         'roles' => ['@'],
-                        'actions' => ['index', 'view', 'create', 'edit', 'update'],
+                        'actions' => ['index'],
                     ],
                     [
                         'allow' => true,
-                        'roles' => ['operator'],
-                        'actions' => ['index', 'view', 'create', 'edit', 'update'],
+                        'roles' => ['executor'],
+                        'actions' => ['execute-ticket', 'update'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['declarer'],
+                        'actions' => ['create', 'update', 'index', 'delete'],
                     ],
                     [
                         'allow' => true,
@@ -39,23 +44,43 @@ class TicketsController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
-                    'multi-delete' => ['POST'],
                 ],
             ],
         ];
     }
 
-    public function actionIndex()
+    public function actionIndex($type = null)
     {
-        $model = new Tickets();
         $searchModel = new TicketsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if ($type == null) {
+            if (Yii::$app->user->can('declarer')) {
+                $type='my';
+            }
+            if (Yii::$app->user->can('executor')) {
+                $type='free';
+            }
+        }
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams,$type);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'model' => $model,
+            'type' => $type
         ]);
     }
+
+    public function actionExecuteTicket($id)
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        if (Yii::$app->user->can('executor')) {
+            $model = Tickets::find()->where(['id' => $id])->one();
+            $model->executor_id = Yii::$app->user->id;
+            $model->status_id = 2;
+            return $model->save() ? true : false;
+        } else {
+            return false;
+        }
+    }
+
 
     public function actionCreate()
     {
@@ -77,7 +102,7 @@ class TicketsController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
-            return $this->render('edit', [
+            return $this->renderAjax('edit', [
                 'model' => $model,
             ]);
         }
@@ -85,10 +110,14 @@ class TicketsController extends Controller
 
     public function actionDelete($id)
     {
-        $model = $this->findModel($id);
-        $model->is_deleted = 1;
-        $model->save();
-        return $this->redirect(['index']);
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        if (Yii::$app->user->can('admin')) {
+            $model = $this->findModel($id);
+            $model->is_deleted = 1;
+            $model->save();
+            return true;
+        }
+        return false;
     }
 
     protected function findModel($id)

@@ -48,6 +48,7 @@ class StatusTicketsController extends Controller
     {
         $searchModel = new StatusTicketsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        var_dump(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

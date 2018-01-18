@@ -7,6 +7,7 @@ use yii\db\ActiveRecord;
 
 class Tickets extends ActiveRecord
 {
+
     public static function tableName()
     {
         return 'tickets';
@@ -45,6 +46,11 @@ class Tickets extends ActiveRecord
     }
 
     public function getStatusTicket()
+    {
+        return $this->hasOne(StatusTicket::className(), ['id' => 'status_id']);
+    }
+
+    public function getStatus_ticket()
     {
         return $this->hasOne(StatusTicket::className(), ['id' => 'status_id']);
     }
