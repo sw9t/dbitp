@@ -100,14 +100,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
             ['class' => 'yii\grid\ActionColumn',
-                'contentOptions' => ['style' => 'width: 85px;'],
-                'template' => '{update} {delete}',
+                'contentOptions' => ['style' => 'width: 112px;'],
+                'template' => '{profile} {update} {delete}',
                 'header' => '',
                 'buttons' => [
+                    'profile' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-user"></span>',
+                            $url, [
+                                'class' => 'btn btn-info btn-xs btn-rounded',
+                                'data-action' => 'profile',
+                            ]);
+                    },
                     'update' => function ($url, $model) {
                         return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
                             $url, [
-                                'class' => 'btn btn-info btn-xs btn-rounded btn-modal',
+                                'class' => 'btn btn-primary btn-xs btn-rounded btn-modal',
                                 'data-action' => 'update',
                                 'data-modalclass' => 'modal-lg',
                             ]);
