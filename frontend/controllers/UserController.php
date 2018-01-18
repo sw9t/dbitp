@@ -28,6 +28,11 @@ class UserController extends Controller
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
+                    [
+                        'actions' => ['profile'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
             'verbs' => [
@@ -112,7 +117,8 @@ class UserController extends Controller
                     if ($modelUserInfo->load(Yii::$app->request->post())) {
                         if ($modelUserInfo->createUsersInfo($model->id)) {
                             $transaction->commit();
-                            return $this->redirect('index');
+                            $redirectUrl = Yii::$app->request->post('redirect_url');
+                            return $this->redirect(isset($redirectUrl) ? $redirectUrl : 'index');
                         }
                     }
                 }
@@ -133,6 +139,14 @@ class UserController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionProfile()
+    {
+        return $this->render('profile', [
+            'user' => User::findOne(Yii::$app->user->id),
+            'userInfo' => UserInfo::findOne(['id_user' => Yii::$app->user->id])
+        ]);
     }
 
     protected function findModel($id)

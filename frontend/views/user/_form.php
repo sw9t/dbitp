@@ -80,6 +80,7 @@ use yii\widgets\MaskedInput;
     </div>
     <div class="row">
         <br/>
+        <input type="hidden" name="redirect_url" id="redirect-url">
         <div class="col-sm-12 form-group">
             <?= Html::submitButton($status == 1 ? 'Создать пользователя' : 'Сохранить изменения',
                 ['class' => 'btn btn-block btn-success', 'name' => 'signup-button']) ?>
